@@ -1,4 +1,5 @@
 fp-info-cache
 *.swp
-autosave_*
+_autosave*
 .DS_Store
+
