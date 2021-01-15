@@ -63,7 +63,7 @@ U 1 1 60010497
 P 1800 5550
 F 0 "J1" H 1718 5767 50  0000 C CNN
 F 1 "Screw_Terminal_01x02" H 1718 5676 50  0000 C CNN
-F 2 "TerminalBlock_4Ucon:TerminalBlock_4Ucon_1x02_P3.50mm_Vertical" H 1800 5550 50  0001 C CNN
+F 2 "TerminalBlock:TerminalBlock_Altech_AK300-2_P5.00mm" H 1800 5550 50  0001 C CNN
 F 3 "~" H 1800 5550 50  0001 C CNN
 	1    1800 5550
 	-1   0    0    -1  
@@ -283,7 +283,7 @@ $EndComp
 Wire Wire Line
 	2650 1550 2650 1150
 Wire Wire Line
-	2650 1150 2300 1150
+	2650 1150 2550 1150
 Connection ~ 2650 1550
 Wire Wire Line
 	2000 1150 1500 1150
@@ -318,7 +318,7 @@ $EndComp
 Wire Wire Line
 	3250 2000 3250 1950
 Wire Wire Line
-	3250 1950 2750 1950
+	3250 1950 3200 1950
 Connection ~ 2750 1950
 $Comp
 L power:-5V #PWR0108
@@ -332,7 +332,7 @@ F 3 "" H 3800 2500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3250 2500 3800 2500
+	3250 2500 3550 2500
 $Comp
 L Device:R_US R3
 U 1 1 600334B1
@@ -358,7 +358,7 @@ $EndComp
 Wire Wire Line
 	1000 2000 1000 1950
 Wire Wire Line
-	1000 1950 1450 1950
+	1000 1950 1400 1950
 Connection ~ 1450 1950
 Wire Wire Line
 	1000 2300 1000 2500
@@ -403,11 +403,11 @@ F 3 "http://www.ti.com/lit/ds/symlink/lm358.pdf" H 5050 3900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4950 3600 4950 3300
+	4950 3600 4950 3350
 Text Label 4950 3550 1    50   ~ 0
 3V
 Wire Wire Line
-	4950 4200 4950 4500
+	4950 4200 4950 4300
 Text Label 4950 4450 1    50   ~ 0
 -2.5V
 Wire Wire Line
@@ -544,7 +544,7 @@ Connection ~ 1100 3650
 Wire Wire Line
 	1100 3650 1200 3650
 Wire Wire Line
-	1950 3600 2300 3600
+	1950 3600 2200 3600
 Text Label 2050 3600 0    50   ~ 0
 3V
 $Comp
@@ -772,4 +772,225 @@ $EndComp
 Wire Wire Line
 	2400 4850 2400 4750
 Connection ~ 2400 4750
+Text Label 4000 4000 0    50   ~ 0
+VIN
+Text Label 5700 3900 0    50   ~ 0
+VOUT
+Text Label 4550 4650 0    50   ~ 0
+VOP-
+Text Label 2550 1150 0    50   ~ 0
+Ipk
+Text Label 1500 1950 0    50   ~ 0
+TC
+Text Label 2600 3400 0    50   ~ 0
+VFB
+Text Label 3000 1950 0    50   ~ 0
+SwE
+$Comp
+L Device:C C11
+U 1 1 6002D9D3
+P 5100 3350
+F 0 "C11" V 4848 3350 50  0000 C CNN
+F 1 "470nF" V 4939 3350 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5138 3200 50  0001 C CNN
+F 3 "~" H 5100 3350 50  0001 C CNN
+	1    5100 3350
+	0    1    1    0   
+$EndComp
+Connection ~ 4950 3350
+Wire Wire Line
+	4950 3350 4950 3300
+$Comp
+L power:GND #PWR012
+U 1 1 6002F15E
+P 5250 3350
+F 0 "#PWR012" H 5250 3100 50  0001 C CNN
+F 1 "GND" V 5255 3222 50  0000 R CNN
+F 2 "" H 5250 3350 50  0001 C CNN
+F 3 "" H 5250 3350 50  0001 C CNN
+	1    5250 3350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:C C12
+U 1 1 6002FB84
+P 5100 4300
+F 0 "C12" V 5352 4300 50  0000 C CNN
+F 1 "470nF" V 5261 4300 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5138 4150 50  0001 C CNN
+F 3 "~" H 5100 4300 50  0001 C CNN
+	1    5100 4300
+	0    -1   -1   0   
+$EndComp
+Connection ~ 4950 4300
+Wire Wire Line
+	4950 4300 4950 4500
+$Comp
+L power:GND #PWR013
+U 1 1 60030758
+P 5250 4300
+F 0 "#PWR013" H 5250 4050 50  0001 C CNN
+F 1 "GND" V 5255 4172 50  0000 R CNN
+F 2 "" H 5250 4300 50  0001 C CNN
+F 3 "" H 5250 4300 50  0001 C CNN
+	1    5250 4300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:C C13
+U 1 1 60071AFA
+P 2200 3750
+F 0 "C13" H 2315 3796 50  0000 L CNN
+F 1 "10uF" H 2315 3705 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2238 3600 50  0001 C CNN
+F 3 "~" H 2200 3750 50  0001 C CNN
+	1    2200 3750
+	1    0    0    -1  
+$EndComp
+Connection ~ 2200 3600
+Wire Wire Line
+	2200 3600 2250 3600
+$Comp
+L power:GND #PWR0109
+U 1 1 600724B2
+P 2200 3900
+F 0 "#PWR0109" H 2200 3650 50  0001 C CNN
+F 1 "GND" H 2205 3727 50  0000 C CNN
+F 2 "" H 2200 3900 50  0001 C CNN
+F 3 "" H 2200 3900 50  0001 C CNN
+	1    2200 3900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP1
+U 1 1 600D003D
+P 2250 3600
+F 0 "TP1" H 2308 3718 50  0000 L CNN
+F 1 "3V" H 2308 3627 50  0000 L CNN
+F 2 "my_library_foot:TestPoint_Keystone_5000-5004_Miniature" H 2450 3600 50  0001 C CNN
+F 3 "~" H 2450 3600 50  0001 C CNN
+	1    2250 3600
+	1    0    0    -1  
+$EndComp
+Connection ~ 2250 3600
+Wire Wire Line
+	2250 3600 2300 3600
+$Comp
+L Connector:TestPoint TP3
+U 1 1 600D12C3
+P 3550 2500
+F 0 "TP3" H 3608 2618 50  0000 L CNN
+F 1 "-5V" H 3608 2527 50  0000 L CNN
+F 2 "my_library_foot:TestPoint_Keystone_5000-5004_Miniature" H 3750 2500 50  0001 C CNN
+F 3 "~" H 3750 2500 50  0001 C CNN
+	1    3550 2500
+	1    0    0    -1  
+$EndComp
+Connection ~ 3550 2500
+Wire Wire Line
+	3550 2500 3800 2500
+$Comp
+L Connector:TestPoint TP4
+U 1 1 600D1DA7
+P 3650 4750
+F 0 "TP4" H 3708 4868 50  0000 L CNN
+F 1 "-2.5V" H 3708 4777 50  0000 L CNN
+F 2 "my_library_foot:TestPoint_Keystone_5000-5004_Miniature" H 3850 4750 50  0001 C CNN
+F 3 "~" H 3850 4750 50  0001 C CNN
+	1    3650 4750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP2
+U 1 1 600D27CC
+P 2550 1150
+F 0 "TP2" H 2608 1268 50  0000 L CNN
+F 1 "IPK" H 2608 1177 50  0000 L CNN
+F 2 "my_library_foot:TestPoint_Keystone_5000-5004_Miniature" H 2750 1150 50  0001 C CNN
+F 3 "~" H 2750 1150 50  0001 C CNN
+	1    2550 1150
+	1    0    0    -1  
+$EndComp
+Connection ~ 2550 1150
+Wire Wire Line
+	2550 1150 2300 1150
+$Comp
+L Connector:TestPoint TP6
+U 1 1 600D9614
+P 3200 1950
+F 0 "TP6" H 3258 2068 50  0000 L CNN
+F 1 "SwE" H 3258 1977 50  0000 L CNN
+F 2 "my_library_foot:TestPoint_Keystone_5000-5004_Miniature" H 3400 1950 50  0001 C CNN
+F 3 "~" H 3400 1950 50  0001 C CNN
+	1    3200 1950
+	1    0    0    -1  
+$EndComp
+Connection ~ 3200 1950
+Wire Wire Line
+	3200 1950 2750 1950
+$Comp
+L Connector:TestPoint TP5
+U 1 1 600DA27F
+P 1400 1950
+F 0 "TP5" H 1458 2068 50  0000 L CNN
+F 1 "TC" H 1458 1977 50  0000 L CNN
+F 2 "my_library_foot:TestPoint_Keystone_5000-5004_Miniature" H 1600 1950 50  0001 C CNN
+F 3 "~" H 1600 1950 50  0001 C CNN
+	1    1400 1950
+	1    0    0    -1  
+$EndComp
+Connection ~ 1400 1950
+Wire Wire Line
+	1400 1950 1450 1950
+$Comp
+L Connector_Generic:Conn_02x03_Counter_Clockwise J4
+U 1 1 600F320C
+P 3400 6100
+F 0 "J4" H 3450 6417 50  0000 C CNN
+F 1 "Conn_02x03_Counter_Clockwise" H 3450 6326 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 3400 6100 50  0001 C CNN
+F 3 "~" H 3400 6100 50  0001 C CNN
+	1    3400 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0110
+U 1 1 600F48E6
+P 2950 6150
+F 0 "#PWR0110" H 2950 5900 50  0001 C CNN
+F 1 "GND" H 2955 5977 50  0000 C CNN
+F 2 "" H 2950 6150 50  0001 C CNN
+F 3 "" H 2950 6150 50  0001 C CNN
+	1    2950 6150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3200 6000 3200 6100
+Connection ~ 3200 6100
+Wire Wire Line
+	3200 6100 3200 6200
+Wire Wire Line
+	3200 6100 2950 6100
+Wire Wire Line
+	2950 6100 2950 6150
+$Comp
+L power:GND #PWR0111
+U 1 1 600FA4B1
+P 3950 6150
+F 0 "#PWR0111" H 3950 5900 50  0001 C CNN
+F 1 "GND" H 3955 5977 50  0000 C CNN
+F 2 "" H 3950 6150 50  0001 C CNN
+F 3 "" H 3950 6150 50  0001 C CNN
+	1    3950 6150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 6000 3700 6100
+Connection ~ 3700 6100
+Wire Wire Line
+	3700 6100 3700 6200
+Wire Wire Line
+	3700 6100 3950 6100
+Wire Wire Line
+	3950 6100 3950 6150
 $EndSCHEMATC
