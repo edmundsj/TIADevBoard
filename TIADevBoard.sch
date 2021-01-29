@@ -412,17 +412,6 @@ Text Label 4950 4450 1    50   ~ 0
 -2.5V
 Wire Wire Line
 	5350 3900 5550 3900
-$Comp
-L power:GND #PWR09
-U 1 1 600680C3
-P 4550 3800
-F 0 "#PWR09" H 4550 3550 50  0001 C CNN
-F 1 "GND" H 4555 3627 50  0000 C CNN
-F 2 "" H 4550 3800 50  0001 C CNN
-F 3 "" H 4550 3800 50  0001 C CNN
-	1    4550 3800
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	4550 3800 4750 3800
 $Comp
@@ -773,7 +762,7 @@ Wire Wire Line
 	2400 4850 2400 4750
 Connection ~ 2400 4750
 Text Label 4000 4000 0    50   ~ 0
-VIN
+VIN-
 Text Label 5700 3900 0    50   ~ 0
 VOUT
 Text Label 4550 4650 0    50   ~ 0
@@ -993,4 +982,32 @@ Wire Wire Line
 	3700 6100 3950 6100
 Wire Wire Line
 	3950 6100 3950 6150
+$Comp
+L Connector:Conn_Coaxial J5
+U 1 1 60138FFA
+P 3750 3500
+F 0 "J5" H 3678 3738 50  0000 C CNN
+F 1 "Conn_Coaxial" H 3678 3647 50  0000 C CNN
+F 2 "my_library_foot:CON-SMA-EDGE-S" H 3750 3500 50  0001 C CNN
+F 3 " ~" H 3750 3500 50  0001 C CNN
+	1    3750 3500
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR09
+U 1 1 60139F50
+P 3750 3700
+F 0 "#PWR09" H 3750 3450 50  0001 C CNN
+F 1 "GND" H 3755 3527 50  0000 C CNN
+F 2 "" H 3750 3700 50  0001 C CNN
+F 3 "" H 3750 3700 50  0001 C CNN
+	1    3750 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3950 3500 4550 3500
+Wire Wire Line
+	4550 3500 4550 3800
+Text Label 4150 3500 0    50   ~ 0
+VIN+
 $EndSCHEMATC
