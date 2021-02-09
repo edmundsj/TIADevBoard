@@ -228,17 +228,6 @@ F 3 "~" H 2900 3200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_US R2
-U 1 1 6001BAE8
-P 2900 3600
-F 0 "R2" H 2968 3646 50  0000 L CNN
-F 1 "10k" H 2968 3555 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2940 3590 50  0001 C CNN
-F 3 "~" H 2900 3600 50  0001 C CNN
-	1    2900 3600
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR0106
 U 1 1 6001C3AE
 P 2900 3750
@@ -697,7 +686,7 @@ $EndComp
 Wire Wire Line
 	3200 4550 3200 4400
 Wire Wire Line
-	3200 4400 3400 4400
+	3200 4400 3250 4400
 Wire Wire Line
 	3200 4650 3300 4650
 Wire Wire Line
@@ -1010,4 +999,44 @@ Wire Wire Line
 	4550 3500 4550 3800
 Text Label 4150 3500 0    50   ~ 0
 VIN+
+$Comp
+L Device:R_US R2
+U 1 1 6001BAE8
+P 2900 3600
+F 0 "R2" H 2968 3646 50  0000 L CNN
+F 1 "10k" H 2968 3555 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2940 3590 50  0001 C CNN
+F 3 "~" H 2900 3600 50  0001 C CNN
+	1    2900 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2900 4350 2900 4150
+Text Label 2900 4300 1    50   ~ 0
+-2.5V
+$Comp
+L Device:C C14
+U 1 1 602255CD
+P 3250 4250
+F 0 "C14" H 3365 4296 50  0000 L CNN
+F 1 "1uF" H 3365 4205 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 3288 4100 50  0001 C CNN
+F 3 "~" H 3250 4250 50  0001 C CNN
+	1    3250 4250
+	1    0    0    -1  
+$EndComp
+Connection ~ 3250 4400
+Wire Wire Line
+	3250 4400 3400 4400
+$Comp
+L power:GND #PWR014
+U 1 1 602262B8
+P 3250 4100
+F 0 "#PWR014" H 3250 3850 50  0001 C CNN
+F 1 "GND" H 3255 3927 50  0000 C CNN
+F 2 "" H 3250 4100 50  0001 C CNN
+F 3 "" H 3250 4100 50  0001 C CNN
+	1    3250 4100
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC

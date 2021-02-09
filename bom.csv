@@ -10,11 +10,11 @@ Capacitor,">  C5, C8, C13",10uF,Digikey,~,,3
 Capacitor,">  C6, C7",1uF,Digikey,~,,2
 Capacitor,    C9,3pF,Digikey,~,,1
 Capacitor,">  C11, C12",470nF,Digikey,~,,2
-Schottky Diode,    D1,D_Schottky,Digikey,497-3759-1-ND_,https://www.digikey.com/product-detail/en/STPS2L30A/497-3759-1-ND/691929/?itemSeq=350970071,1
+Schottky Diode,    D1,D_Schottky,Digikey,497-3759-1-ND,https://www.digikey.com/product-detail/en/STPS2L30A/497-3759-1-ND/691929/?itemSeq=350970071,1
 Screw Terminal,    J1,Screw_Terminal_01x02,Digikey,~,,1
-SMA Jack,">  J2, J3",Conn_Coaxial,Digikey, ~,,2
+SMA Jack,">  J2, J3",Conn_Coaxial,Digikey,CON-SMA-EDGE-S,https://www.digikey.com/en/products/detail/rf-solutions/CON-SMA-EDGE-S/5845767?s=N4IgTCBcDaIMIHkByBaAygWQIIoKIBEBxXdEAXQF8g,2
 2x3 Header,    J4,Conn_02x03_Counter_Clockwise,Digikey,~,,1
-Inductor,    L1,100uH,Digikey,587-1628-1-ND_,https://www.digikey.com/product-detail/en/CBC3225T101MR/587-1628-1-ND/1008243/?itemSeq=350969248,1
+Inductor,    L1,100uH,Digikey,587-1628-1-ND,https://www.digikey.com/product-detail/en/CBC3225T101MR/587-1628-1-ND/1008243/?itemSeq=350969248,1
 Resistor,">  R1, R3, R6",1k,Digikey,~,,3
 Resistor,    R2,10k,Digikey,~,,1
 Resistor,    R4,0R,Digikey,~,,1
