@@ -12,7 +12,7 @@ Features
 - SMA input and output
 - Extremely short input-to-output path
 
-Issues in Old Versions
+Issues in Versions 1,2
 -----------------------
 - [FIXED in v3] Old versions of this PCB relied on an off-board +/-15V dual supply, which was coupling in a huge amount of noise into the opamp.
 - [FIXED in v3] Old opamp (ADA4625) appears to be often out of stock and is quite expensive (~$10). 
@@ -25,8 +25,13 @@ Issues in Version 3
 - [FIXED v4] There should be a 1uF capacitor to ground hanging off pin VA.
 - [FIXED v4] There should be a 10nF capacitor between VA and VFB, not 1uF.
 
-Test Data
-------------
+Issues in Version 4
+---------------------
+- [FIXED v5] Very high output noise (~10uV/rtHz) when driving diode with opamp. Switched to driving with GND.
+- [FIXED v5] OPA2387 appears to have ~5x the specced current noise. Switched to ADA4622 (0.7fA/rtHz vs 70). 
+- [FIXED v5] Switch back to dual supply with linear regulators
+- [FIXED v5] Filter the output of the switched supply with an CLC network
+- [FIXED v5] Add bulkhead-mount input/output SMA connectors to enclose entire board in grounded Faraday cage
 
 Appendix
 ---------
@@ -42,4 +47,7 @@ ______________________________
 - We should test the opamp tomorrow to confirm it works as expected.
 - The new TIA has higher noise than expected (400nV/rtHz), and, when connected to the photodiode, the noise goes up MASSIVELy to around 60uV/rtHz, even after ensuring the ADC is properly biased. I don't know what the issue is, but it's pretty bad. The guard voltage is correct (1.5V), and the voltage across the diode is very nearly 0V. Less than ~1mV. Either the photodiode does not like being biased in this way, or the TIA is just a heaping pile of shit. I guess for now I'm stuck with my old TIA, as I have no idea what's going on with this one. The 60Hz interferers are still there, indicating the noise is not coming intermittently from the power supply. However, the interferers are completely eliminated by a crappy Faraday cage, which I never achieved with the last TIA. 
 - Here's my guess as to why the noise is so high: the output current noise of the opamp is being dropped across the photodiode, which has a very high impedance. If the photodiode were a dummy load with a lower impedance, this would not be the case. The output current noise would only have to be in the ~pA/rtHz range, which is potentially plausible. I can connect a dummy load tomorrow to see if this is indeed the issue. If it is, I'm going to need to rethink how to use a negative supply for this, and how to add a reliable (integrated) Faraday cage to my PCB, completely covering the high-impedance node.
-
+- Apparently what I am really looking for is now a low-noise opamp per se, since this usually means low VOLTAGE noise, but a low input bias current opamp (which implies low current noise). However, the OPA2387 is rated for a bias current of 135pA, which would predict an input current noise density of 7fA/rtHz, which is nowhere close to its spec. Apparently also JFET-based opamps are what I am looking for. This is how I should start my search. I also want an opamp that's specced at the same supply voltages I am plannong on using, and at this point, I'm flexible.
+- Ultimately, my problem is that I want an opamp which can operate off a 5V supply (or anywhere near 5V) so I can use a positive and negative supply. The ADA4625 does not work for this because it requires the input common-mode voltage to be 1.5V, not VDD/2, and the output voltage to be VDD/2, which is clearly not tenable if I am operating it as a TIA. It looks like the ADA4622 is an excellent choice. 0.8fA/rtHz current noise, specced at +/-5V operation, 12nV/rtHz voltage noise, and works at Vcm=0V. PSRR is only 80dB, but that's a minimum guaranteed spec, so I'll work with it.
+- I found this app note on noise to be quite helpful: https://www.analog.com/media/en/training-seminars/tutorials/MT-047.pdf
+- Analog devices recommends using the ADP5070 as the switching regulator, which operates at a whopping 2MHz. Why do they recommend this? What's its benefit over the alternatives?
