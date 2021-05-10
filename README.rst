@@ -1,16 +1,14 @@
-+3V/-2.5V TIA Dev Board
++/-5V TIA Dev Board
 =========================
 
 Features
 ----------
-- Input between 3.2V and 12V to VDD pin (screw terminal)
-- Output between +3V and -2.5V. 
-- Generates +3V and -2.5V low noise (<30uVpp) supply voltages
-- Uses a low-noise opamp: OPA2387 (<70fA/rtHz, <8.5nV/rtHz, <180nVpp 1/f noise)
+- On-board +/-5V supply generation
+- Uses a low-noise opamp: ADA4622 (<1fA/rtHz, <15nV/rtHz)
+- Low bias current opamp (<10pA) for accurate DC current measurement
 - Opamp is unity gain stable, no input offset (<2uV), common-mode input beyond the rails, R2R output
-- Designed for shot-noise limited photodiode amplification from 100nA-100uA, depending on feedback resistor
 - SMA input and output
-- Extremely short input-to-output path
+- Low parasitic input/output capacitance
 
 Issues in Versions 1,2
 -----------------------
@@ -32,22 +30,3 @@ Issues in Version 4
 - [FIXED v5] Switch back to dual supply with linear regulators
 - [FIXED v5] Filter the output of the switched supply with an CLC network
 - [FIXED v5] Add bulkhead-mount input/output SMA connectors to enclose entire board in grounded Faraday cage
-
-Appendix
----------
-Appendix 1 - Debugging Notes
-______________________________
-- I'm pretty sure I fried my -2.5V regulator. With an input of -3.44V, it outputs -1.97V. This is a 1.5V dropout voltage with a target regulation of -2.5V, which indicates I destroyed the thing. It's also completely contaminated with switching noise of magnitude ~40mVpp, which means we aren't regulaating anything. The switching noise at the output of the switching regulator is 120mVpp, and the switching frequency is 6.58kHz. This switching speed seems really low - it would seem to indicate we have a ~3nF timing capacitor, but we have a ~200pF capacitor.
-- I will try replacing C7 with a 10nF capacitor and short pin 1 to pin 2, see if that fixes the issues I was having.
-- Still getting oscillation when replacing C7 with a 47nF cap and shorting pin 1 and pins 2, although the oscillations are at a much higher frequency (~10x compared to before). I suspect the capacitance value has something to do with this. I added a 1uF capacitor between pin 3 (VA) and ground, connected via a jumper wire. Adding this capacitor caused the oscillations to stop, but the output voltage is -3.3V, not -2.5V, and the regulation is absolute shit. The datasheet says that C7 can be between 10nF and 1uF, so I don't think that's the issue. I think I may just give up on the negative supply. VREG should be at -0.5V but it appears to not be at that voltage, it's actually like 50mV.
-- I suspect this has something to do with either the rework conditions (worked at too high of a temperature) or I accidentally ESD'd the chip.
-- It may be advisable to switch to just driving the shield to the photodiode with the opamp rather than grounding the shield. Before redesigning the PCB to that effect, I'll try to solder on one more more tomorrow, paying close attention to rework temperature, keeping the rework temperature under 500F, and always keeping myself grounded to avoid frying the chip. That would save considerably on complexity of the PCB and I wouldn't have to use any of these godforsaken QFN packages. The downside is higher impedance driving the shield, but I think that should be fine.
-- If the opamp has a biased output (for example at 1.65V) this means that the following stage will need a different offset voltage to bias the ADC properly - that's OK, I can increase the offset from VDD/4 to VDD/2 and this issue should be fixed. This opamp also may not behave properly when driving the cable capacitance. It should work, as I don't expect the parasitic cap to be more than ~100pF. A single supply would work for this just fine, with some voltage division. Yeah, let's just do that.
-- Well, at least the voltage inverter worked decently well :) Nowhere close to spec, but it still inverted the voltage.
-- We should test the opamp tomorrow to confirm it works as expected.
-- The new TIA has higher noise than expected (400nV/rtHz), and, when connected to the photodiode, the noise goes up MASSIVELy to around 60uV/rtHz, even after ensuring the ADC is properly biased. I don't know what the issue is, but it's pretty bad. The guard voltage is correct (1.5V), and the voltage across the diode is very nearly 0V. Less than ~1mV. Either the photodiode does not like being biased in this way, or the TIA is just a heaping pile of shit. I guess for now I'm stuck with my old TIA, as I have no idea what's going on with this one. The 60Hz interferers are still there, indicating the noise is not coming intermittently from the power supply. However, the interferers are completely eliminated by a crappy Faraday cage, which I never achieved with the last TIA. 
-- Here's my guess as to why the noise is so high: the output current noise of the opamp is being dropped across the photodiode, which has a very high impedance. If the photodiode were a dummy load with a lower impedance, this would not be the case. The output current noise would only have to be in the ~pA/rtHz range, which is potentially plausible. I can connect a dummy load tomorrow to see if this is indeed the issue. If it is, I'm going to need to rethink how to use a negative supply for this, and how to add a reliable (integrated) Faraday cage to my PCB, completely covering the high-impedance node.
-- Apparently what I am really looking for is now a low-noise opamp per se, since this usually means low VOLTAGE noise, but a low input bias current opamp (which implies low current noise). However, the OPA2387 is rated for a bias current of 135pA, which would predict an input current noise density of 7fA/rtHz, which is nowhere close to its spec. Apparently also JFET-based opamps are what I am looking for. This is how I should start my search. I also want an opamp that's specced at the same supply voltages I am plannong on using, and at this point, I'm flexible.
-- Ultimately, my problem is that I want an opamp which can operate off a 5V supply (or anywhere near 5V) so I can use a positive and negative supply. The ADA4625 does not work for this because it requires the input common-mode voltage to be 1.5V, not VDD/2, and the output voltage to be VDD/2, which is clearly not tenable if I am operating it as a TIA. It looks like the ADA4622 is an excellent choice. 0.8fA/rtHz current noise, specced at +/-5V operation, 12nV/rtHz voltage noise, and works at Vcm=0V. PSRR is only 80dB, but that's a minimum guaranteed spec, so I'll work with it.
-- I found this app note on noise to be quite helpful: https://www.analog.com/media/en/training-seminars/tutorials/MT-047.pdf
-- Analog devices recommends using the ADP5070 as the switching regulator, which operates at a whopping 2MHz. Why do they recommend this? What's its benefit over the alternatives?
